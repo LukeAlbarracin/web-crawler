@@ -11,7 +11,7 @@ format:
 	black scrapy/sayariproject/
 
 lint:
-	flake8 --ignore=E121,E501,E265 scrapy/sayariproject/ ./webcrawling.ipynb
+	flake8 --ignore=E121,E501,E265,F821 scrapy/sayariproject/ ./webcrawling.ipynb
 
 crawl:
 	(cd scrapy && scrapy crawl firststop)

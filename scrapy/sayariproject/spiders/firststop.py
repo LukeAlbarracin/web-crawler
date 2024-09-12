@@ -54,10 +54,10 @@ class FirststopSpider(scrapy.Spider):
 
         Passes over company_name from previous response from business search query to callback 'parse_company'
         """
-        data = response.json()["rows"]
+        data = response.json().get("rows")
         for key in data:
-            company = data[key]
-            source_id = company["ID"]
+            company = data.get(key)
+            source_id = company.get("ID")
             self.log(f"CompanyID: {source_id}\n")
             company_name = company["TITLE"][0]
             url = f"https://firststop.sos.nd.gov/api/FilingDetail/business/{source_id}/false"
@@ -77,7 +77,7 @@ class FirststopSpider(scrapy.Spider):
 
         Adds the dictionary to a class-level list which will be used upon 'spider close'
         """
-        data = response.json()["DRAWER_DETAIL_LIST"]
+        data = response.json().get("DRAWER_DETAIL_LIST")
         flattened_dict = {entry["LABEL"]: entry["VALUE"] for entry in data}
         company_name = response.meta.get("Company")
         flattened_dict["Company"] = company_name
