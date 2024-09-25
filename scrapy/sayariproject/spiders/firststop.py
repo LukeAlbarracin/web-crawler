@@ -32,7 +32,7 @@ class FirststopSpider(scrapy.Spider):
 
         Each business contains an ID that will be used in callback 'parse'
         """
-        search_value = "X"
+        search_value = "X" ## TODO: Take in input, to know what to search if lambda / cronjob
         payload = json.dumps(
             {
                 "SEARCH_VALUE": search_value,
